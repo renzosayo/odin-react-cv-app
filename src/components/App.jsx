@@ -83,7 +83,10 @@ function App() {
           handleChangeEndDate,
         }}
       />
-      <Work />
+      <Work
+        setWorkBackground={setWorkBackground}
+        dateFormatter={dateFormatter}
+      />
       <CVMain
         name={name}
         email={email}
@@ -92,6 +95,7 @@ function App() {
         course={course}
         startDate={startDate}
         endDate={endDate}
+        workBackground={workBackground}
       />
     </>
   );
