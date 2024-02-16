@@ -1,4 +1,4 @@
-export default function Work({ setWorkBackground, dateFormatter }) {
+export default function Work({ setWorkBackground, dateFormatter, onClick }) {
   return (
     <>
       <h1>Work Background</h1>
@@ -77,7 +77,9 @@ export default function Work({ setWorkBackground, dateFormatter }) {
             });
           }}
         />
-        <button className="add-work">Add to CV</button>
+        <button className="add-work" onClick={onClick}>
+          Add to CV
+        </button>
       </div>
     </>
   );

@@ -21,6 +21,11 @@ function App() {
     workStartDate: "February 2019",
     workEndDate: "May 2023",
   });
+  const [workList, setWorkList] = useState([]);
+
+  const handleClickAddWork = () => {
+    setWorkList((prev) => [...prev, workBackground]);
+  };
 
   const handleChangeName = (e) => {
     setName(e.target.value);
@@ -86,6 +91,7 @@ function App() {
       <Work
         setWorkBackground={setWorkBackground}
         dateFormatter={dateFormatter}
+        onClick={handleClickAddWork}
       />
       <CVMain
         name={name}
@@ -96,6 +102,7 @@ function App() {
         startDate={startDate}
         endDate={endDate}
         workBackground={workBackground}
+        workList={workList}
       />
     </>
   );

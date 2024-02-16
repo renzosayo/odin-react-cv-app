@@ -6,8 +6,10 @@ export default function CVMain({
   course,
   startDate,
   endDate,
+  workList,
 }) {
   return (
+    // todo: create element with map
     <>
       <div className="contact-info">
         <h1>{name}</h1>
@@ -21,6 +23,13 @@ export default function CVMain({
           {startDate} - {endDate}
         </h3>
       </div>
+      {workList.map((work) => {
+        return (
+          <>
+            <div key={work.position}>{work.position}</div>
+          </>
+        );
+      })}
     </>
   );
 }
