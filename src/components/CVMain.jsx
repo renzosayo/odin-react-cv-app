@@ -15,38 +15,47 @@ export default function CVMain({
     <>
       <div className="contact-info">
         <h1>{name}</h1>
-        <h3>{email}</h3>
-        <h3>{phone}</h3>
+        <p>{email}</p>
+        <p>{phone}</p>
       </div>
-      <div className="education-info">
-        <h2>{course}</h2>
-        <h3>{school}</h3>
-        <h3>
+      <div className="educ-info">
+        <h2>
+          <u>Education</u>
+        </h2>
+        <h3>{course}</h3>
+        <p>{school}</p>
+        <p>
           {startDate} - {endDate}
-        </h3>
+        </p>
       </div>
-      {workList.map((work) => {
-        return (
-          <div key={work.company + startDate}>
-            <button
-              className="edit"
-              onClick={(e) => {
-                handleClickEdit(e);
-              }}
-            >
-              Edit
-            </button>
-            <h2>{work.position}</h2>
-            <h3>{work.company}</h3>
-            <h3>{work.description}</h3>
-            <h3>
-              {dateFormatter(work.workStartDate)} -{" "}
-              {dateFormatter(work.workEndDate)}
-            </h3>
-            <p style={{ visibility: "hidden" }}>{work.id}</p>
-          </div>
-        );
-      })}
+      <div className="work-info">
+        <h2>
+          <u>Work Background</u>
+        </h2>
+        {workList.map((work) => {
+          return (
+            <div className="work-item" key={work.company + startDate}>
+              <button
+                type="button"
+                className="edit"
+                onClick={(e) => {
+                  handleClickEdit(e);
+                }}
+              >
+                Edit
+              </button>
+              <h3>{work.position}</h3>
+              <p>{work.company}</p>
+              <p>{work.description}</p>
+              <p>
+                {dateFormatter(work.workStartDate)} -{" "}
+                {dateFormatter(work.workEndDate)}
+              </p>
+              <p style={{ visibility: "hidden" }}>{work.id}</p>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }

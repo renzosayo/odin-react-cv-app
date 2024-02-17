@@ -1,0 +1,101 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+#root {
+  display: grid;
+  grid-template: 1fr / 1fr 2fr;
+  background-color: blanchedalmond;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100vw;
+  padding: 20px;
+}
+
+.input-panes {
+  grid-column: 1 / span 1;
+}
+
+.cv-main {
+  grid-column: 2 / span 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+  border: 2px solid black;
+  padding: 100px 100px;
+  gap: 30px;
+}
+
+.cv-main h1 {
+  font-size: 40px;
+}
+
+.contact-info {
+  display: flex;
+  gap: 6px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.work-info,
+.work-info > div,
+.educ-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-self: start;
+  align-items: start;
+  margin-top: 30px;
+}
+
+.contact-form,
+.educ-form,
+.work-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+}
+
+.work-form {
+  position: relative;
+}
+
+.work-item button {
+  position: absolute;
+  left: 80%;
+  height: 24px;
+  width: 80px;
+  border: 1px solid black;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.work-item button:hover {
+  background-color: lightgray;
+  font-size: 14px;
+}
+
+.add-work,
+input,
+textarea {
+  max-width: 400px;
+  height: 30px;
+  font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 6px;
+}
+
+textarea {
+  height: 50px;
+}
+
+label {
+  font-size: 0.8rem;
+  font-weight: 800;
+}

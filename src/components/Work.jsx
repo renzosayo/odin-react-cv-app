@@ -8,7 +8,7 @@ export default function Work({
   return (
     <>
       <h1>Work Background</h1>
-      <div className="work-info">
+      <div className="work-form">
         <label htmlFor="position">Position</label>
         <input
           type="text"

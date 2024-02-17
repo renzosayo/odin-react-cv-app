@@ -3,6 +3,7 @@ import Contact from "./Contact";
 import { useState } from "react";
 import Education from "./Education";
 import Work from "./Work";
+import "../styles/styles.css";
 
 function App() {
   const [id, setId] = useState(0);
@@ -138,37 +139,41 @@ function App() {
 
   return (
     <>
-      <Contact
-        onChange={{ handleChangeName, handleChangeEmail, handleChangePhone }}
-      />
-      <Education
-        onChange={{
-          handleChangeSchool,
-          handleChangeCourse,
-          handleChangeStartDate,
-          handleChangeEndDate,
-        }}
-      />
-      <Work
-        setworkBackgroundItem={setworkBackgroundItem}
-        dateFormatter={dateFormatter}
-        reverseDateFormatter={reverseDateFormatter}
-        handleAdd={handleClickAddWork}
-        workBackgroundItem={workBackgroundItem}
-      />
-      <CVMain
-        name={name}
-        email={email}
-        phone={phone}
-        school={school}
-        course={course}
-        startDate={startDate}
-        endDate={endDate}
-        workBackgroundItem={workBackgroundItem}
-        dateFormatter={dateFormatter}
-        workList={workList}
-        handleClickEdit={handleClickEdit}
-      />
+      <div className="input-panes">
+        <Contact
+          onChange={{ handleChangeName, handleChangeEmail, handleChangePhone }}
+        />
+        <Education
+          onChange={{
+            handleChangeSchool,
+            handleChangeCourse,
+            handleChangeStartDate,
+            handleChangeEndDate,
+          }}
+        />
+        <Work
+          setworkBackgroundItem={setworkBackgroundItem}
+          dateFormatter={dateFormatter}
+          reverseDateFormatter={reverseDateFormatter}
+          handleAdd={handleClickAddWork}
+          workBackgroundItem={workBackgroundItem}
+        />
+      </div>
+      <div className="cv-main">
+        <CVMain
+          name={name}
+          email={email}
+          phone={phone}
+          school={school}
+          course={course}
+          startDate={startDate}
+          endDate={endDate}
+          workBackgroundItem={workBackgroundItem}
+          dateFormatter={dateFormatter}
+          workList={workList}
+          handleClickEdit={handleClickEdit}
+        />
+      </div>
     </>
   );
 }
