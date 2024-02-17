@@ -100,11 +100,6 @@ export default function Work({
               workStartDate: "",
               workEndDate: "",
             });
-            // document.querySelector("#position").value = "";
-            // document.querySelector("#company").value = "";
-            // document.querySelector("#description").value = "";
-            // document.querySelector("#workStartDate").value = "";
-            // document.querySelector("#workEndDate").value = "";
           }}
         >
           Add to CV

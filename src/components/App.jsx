@@ -14,8 +14,8 @@ function App() {
   const [course, setCourse] = useState(
     "Bachelor of Science in Information Technology"
   );
-  const [startDate, setStartDate] = useState("June 2013");
-  const [endDate, setEndDate] = useState("June 2017");
+  const [startDate, setStartDate] = useState("2013-06");
+  const [endDate, setEndDate] = useState("2017-06");
   const [workBackgroundItem, setworkBackgroundItem] = useState({
     position: "",
     company: "",
@@ -91,12 +91,12 @@ function App() {
   };
 
   const handleChangeStartDate = (e) => {
-    let formatted = dateFormatter(e.target.value.split("-"));
+    let formatted = e.target.value;
     setStartDate(formatted);
   };
 
   const handleChangeEndDate = (e) => {
-    let formatted = dateFormatter(e.target.value.split("-"));
+    let formatted = e.target.value;
     setEndDate(formatted);
   };
 

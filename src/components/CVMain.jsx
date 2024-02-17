@@ -25,7 +25,7 @@ export default function CVMain({
         <h3>{course}</h3>
         <p>{school}</p>
         <p>
-          {startDate} - {endDate}
+          {dateFormatter(startDate)} - {dateFormatter(endDate)}
         </p>
       </div>
       <div className="work-info">
