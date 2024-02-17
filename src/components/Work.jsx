@@ -1,4 +1,10 @@
-export default function Work({ setWorkBackground, dateFormatter, onClick }) {
+export default function Work({
+  workBackgroundItem,
+  setworkBackgroundItem,
+  // dateFormatter,
+  // reverseDateFormatter,
+  handleAdd,
+}) {
   return (
     <>
       <h1>Work Background</h1>
@@ -8,8 +14,9 @@ export default function Work({ setWorkBackground, dateFormatter, onClick }) {
           type="text"
           name="position"
           id="position"
+          value={workBackgroundItem.position}
           onChange={(e) => {
-            setWorkBackground((prev) => {
+            setworkBackgroundItem((prev) => {
               return {
                 ...prev,
                 position: e.target.value,
@@ -22,8 +29,9 @@ export default function Work({ setWorkBackground, dateFormatter, onClick }) {
           type="text"
           name="company"
           id="company"
+          value={workBackgroundItem.company}
           onChange={(e) => {
-            setWorkBackground((prev) => {
+            setworkBackgroundItem((prev) => {
               return {
                 ...prev,
                 company: e.target.value,
@@ -35,11 +43,12 @@ export default function Work({ setWorkBackground, dateFormatter, onClick }) {
         <textarea
           name="description"
           id="description"
+          value={workBackgroundItem.description}
           cols="30"
           rows="10"
           className="description"
           onChange={(e) => {
-            setWorkBackground((prev) => {
+            setworkBackgroundItem((prev) => {
               return {
                 ...prev,
                 description: e.target.value,
@@ -52,9 +61,10 @@ export default function Work({ setWorkBackground, dateFormatter, onClick }) {
           type="month"
           name="workStartDate"
           id="workStartDate"
+          value={workBackgroundItem.workStartDate}
           onChange={(e) => {
-            setWorkBackground((prev) => {
-              let formatted = dateFormatter(e.target.value.split("-"));
+            setworkBackgroundItem((prev) => {
+              let formatted = e.target.value; //dateFormatter(e.target.value.split("-"));
               return {
                 ...prev,
                 workStartDate: formatted,
@@ -67,9 +77,10 @@ export default function Work({ setWorkBackground, dateFormatter, onClick }) {
           type="month"
           name="workEndDate"
           id="workEndDate"
+          value={workBackgroundItem.workEndDate}
           onChange={(e) => {
-            setWorkBackground((prev) => {
-              let formatted = dateFormatter(e.target.value.split("-"));
+            setworkBackgroundItem((prev) => {
+              let formatted = e.target.value; //dateFormatter(e.target.value.split("-"));
               return {
                 ...prev,
                 workEndDate: formatted,
@@ -77,7 +88,25 @@ export default function Work({ setWorkBackground, dateFormatter, onClick }) {
             });
           }}
         />
-        <button className="add-work" onClick={onClick}>
+        <button
+          className="add-work"
+          onClick={() => {
+            handleAdd();
+            // reset fields
+            setworkBackgroundItem({
+              position: "",
+              company: "",
+              description: "",
+              workStartDate: "",
+              workEndDate: "",
+            });
+            // document.querySelector("#position").value = "";
+            // document.querySelector("#company").value = "";
+            // document.querySelector("#description").value = "";
+            // document.querySelector("#workStartDate").value = "";
+            // document.querySelector("#workEndDate").value = "";
+          }}
+        >
           Add to CV
         </button>
       </div>

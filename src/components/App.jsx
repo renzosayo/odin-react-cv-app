@@ -5,6 +5,7 @@ import Education from "./Education";
 import Work from "./Work";
 
 function App() {
+  const [id, setId] = useState(0);
   const [name, setName] = useState("John Smith");
   const [email, setEmail] = useState("johnsmith@email.com");
   const [phone, setPhone] = useState("1234567890");
@@ -14,18 +15,15 @@ function App() {
   );
   const [startDate, setStartDate] = useState("June 2013");
   const [endDate, setEndDate] = useState("June 2017");
-  const [workBackground, setWorkBackground] = useState({
-    position: "Data Analyst",
-    company: "Accenture Inc",
-    description: "Analyzing data for client",
-    workStartDate: "February 2019",
-    workEndDate: "May 2023",
+  const [workBackgroundItem, setworkBackgroundItem] = useState({
+    position: "",
+    company: "",
+    description: "",
+    workStartDate: "",
+    workEndDate: "",
+    id: id,
   });
   const [workList, setWorkList] = useState([]);
-
-  const handleClickAddWork = () => {
-    setWorkList((prev) => [...prev, workBackground]);
-  };
 
   const handleChangeName = (e) => {
     setName(e.target.value);
@@ -47,7 +45,10 @@ function App() {
     setCourse(e.target.value);
   };
 
-  const dateFormatter = ([year, month]) => {
+  const dateFormatter = (string) => {
+    // catch error
+    if (!string) return "";
+    let [year, month] = string.split("-");
     const months = [
       "January",
       "February",
@@ -65,6 +66,29 @@ function App() {
     return `${months[Number(month) - 1]} ${year}`;
   };
 
+  const reverseDateFormatter = (string) => {
+    // catch error
+    if (!string) return "";
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    let date = string.split(" ");
+    let month = months.indexOf(date[0]) + 1;
+    month < 10 ? (month = `0${month}`) : String(month);
+    return `${date[1]}-${month}`;
+  };
+
   const handleChangeStartDate = (e) => {
     let formatted = dateFormatter(e.target.value.split("-"));
     setStartDate(formatted);
@@ -73,6 +97,43 @@ function App() {
   const handleChangeEndDate = (e) => {
     let formatted = dateFormatter(e.target.value.split("-"));
     setEndDate(formatted);
+  };
+
+  const handleClickAddWork = () => {
+    const workItem = { ...workBackgroundItem, id: id };
+    setworkBackgroundItem(workItem);
+    setWorkList((prev) => [...prev, workItem]);
+    setId(id + 1);
+    document.querySelector("#position").value = "";
+    document.querySelector("#company").value = "";
+    document.querySelector("#description").value = "";
+    document.querySelector("#workStartDate").value = "";
+    document.querySelector("#workEndDate").value = "";
+  };
+
+  const handleClickEdit = (e) => {
+    const selected = [...e.target.parentElement.childNodes].map(
+      (child) => child.textContent
+    );
+    let [start, end] = selected[4].split(" - ");
+
+    setworkBackgroundItem({
+      position: selected[1],
+      company: selected[2],
+      description: selected[3],
+      workStartDate: reverseDateFormatter(start),
+      workEndDate: reverseDateFormatter(end),
+    });
+
+    // document.querySelector("#position").value = selected[1];
+    // document.querySelector("#company").value = selected[2];
+    // document.querySelector("#description").value = selected[3];
+    // document.querySelector("#workStartDate").value =
+    //   reverseDateFormatter(start);
+    // document.querySelector("#workEndDate").value = reverseDateFormatter(end);
+    setWorkList((prev) => {
+      return prev.filter((workBg) => Number(workBg.id) !== Number(selected[5]));
+    });
   };
 
   return (
@@ -89,9 +150,11 @@ function App() {
         }}
       />
       <Work
-        setWorkBackground={setWorkBackground}
+        setworkBackgroundItem={setworkBackgroundItem}
         dateFormatter={dateFormatter}
-        onClick={handleClickAddWork}
+        reverseDateFormatter={reverseDateFormatter}
+        handleAdd={handleClickAddWork}
+        workBackgroundItem={workBackgroundItem}
       />
       <CVMain
         name={name}
@@ -101,8 +164,10 @@ function App() {
         course={course}
         startDate={startDate}
         endDate={endDate}
-        workBackground={workBackground}
+        workBackgroundItem={workBackgroundItem}
+        dateFormatter={dateFormatter}
         workList={workList}
+        handleClickEdit={handleClickEdit}
       />
     </>
   );
